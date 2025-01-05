@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template to create and deploy an S3 bucket.
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "my-s3-bucket-${AWS::AccountId}-${AWS::Region}"
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        - Key: Environment
+          Value: Production
+
+Outputs:
+  BucketName:
+    Description: Name of the S3 bucket
+    Value: !Ref MyS3Bucket
